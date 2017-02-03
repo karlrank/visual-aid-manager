@@ -9,13 +9,13 @@ import jetpack from 'fs-jetpack';
 export default function (name, options) {
 
     var userDataDir = jetpack.cwd(app.getPath('userData'));
-    var stateStoreFile = 'window-state-' + name +'.json';
+    var stateStoreFile = `window-state-${encodeURIComponent(name)}.json`;
     var defaultSize = {
         width: options.width,
         height: options.height
     };
     var state = {};
-    var win;
+    var window;
 
     var restore = function () {
         var restoredState = {};
@@ -29,8 +29,8 @@ export default function (name, options) {
     };
 
     var getCurrentPosition = function () {
-        var position = win.getPosition();
-        var size = win.getSize();
+        var position = window.getPosition();
+        var size = window.getSize();
         return {
             x: position[0],
             y: position[1],
@@ -67,7 +67,7 @@ export default function (name, options) {
     };
 
     var saveState = function () {
-        if (!win.isMinimized() && !win.isMaximized()) {
+        if (!window.isMinimized() && !window.isMaximized()) {
             Object.assign(state, getCurrentPosition());
         }
         userDataDir.write(stateStoreFile, state, { atomic: true });
@@ -75,9 +75,13 @@ export default function (name, options) {
 
     state = ensureVisibleOnSomeDisplay(restore());
 
-    win = new BrowserWindow(Object.assign({}, options, state));
+    window = new BrowserWindow(Object.assign({show: false}, options, state));
 
-    win.on('close', saveState);
+    window.on('close', saveState);
 
-    return win;
+    window.once('ready-to-show', () => {
+        window.show();
+    });
+
+    return window;
 }

@@ -7,6 +7,7 @@ import { remote } from 'electron'; // native electron module
 import jetpack from 'fs-jetpack'; // module loaded from npm
 import { greet } from './hello_world/hello_world'; // code authored by you in this project
 import env from './env';
+import templates from './templates';
 
 console.log('Loaded environment variables:', env);
 
@@ -18,7 +19,8 @@ var appDir = jetpack.cwd(app.getAppPath());
 console.log('The author of this app is:', appDir.read('package.json', 'json').author);
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('greet').innerHTML = greet();
-    document.getElementById('platform-info').innerHTML = os.platform();
-    document.getElementById('env-name').innerHTML = env.name;
+    // document.getElementById('greet').innerHTML = greet();
+    // document.getElementById('platform-info').innerHTML = os.platform();
+    // document.getElementById('env-name').innerHTML = env.name;
+    document.querySelector('body').innerHTML = templates.main();
 });
