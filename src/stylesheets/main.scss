@@ -8,6 +8,21 @@ html, body {
 
 body {
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+
+    > main {
+        background-color: red;
+        flex: 1 1 auto;
+        overflow: auto;
+        padding: 1rem;
+
+        > div.container {
+            height: 100%;
+        }
+    }
 }
 
 @import 'page';
+@import 'header';
+@import 'preview';

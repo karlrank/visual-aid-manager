@@ -1,0 +1,10 @@
+
+body > header {
+    background-color: blue;
+
+    > nav > button {
+        &.selected {
+            background-color: green;
+        }
+    }
+}

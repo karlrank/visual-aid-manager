@@ -1,8 +1,10 @@
 
-main.Page {
-    width: 100%;
-    height: 100%;
+section.Page {
+    width: 63vh;
+    height: 90vh;
     page-break-after: always;
+    margin-bottom: 1rem;
+    background-color: white;
 
     > table {
         width: 100%;
@@ -45,5 +47,13 @@ main.Page {
                 }
             }
         }
+    }
+}
+
+@media print {
+    section.Page {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0;
     }
 }
