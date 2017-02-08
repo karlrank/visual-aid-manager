@@ -1,0 +1,49 @@
+
+main.Page {
+    width: 100%;
+    height: 100%;
+    page-break-after: always;
+
+    > table {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+
+        > tbody {
+            tr, td {
+                //border-collapse: collapse;
+                border: 1px solid black;
+            }
+
+            > tr > td {
+                width: 33.33%;
+                height: 33.33%;
+                padding: 0;
+
+                > div.AidItem {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    > div.image-container {
+                        flex: 1 0 auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        > img {
+                            max-height: 100%;
+                            max-width: 100%;
+                        }
+                    }
+
+                    > :not(:first-child) {
+                        min-height: 1em;
+                        border-top: 1px solid black;
+                        padding: 0.125em;
+                    }
+                }
+            }
+        }
+    }
+}

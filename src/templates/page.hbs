@@ -1,0 +1,14 @@
+
+<main class="Page">
+  <table>
+      <tbody>
+        {{#each rows}}
+            <tr>
+                {{#each columns}}
+                    <td>{{> aidItem item=this }}</td>
+                {{/each}}
+            </tr>
+        {{/each}}
+      </tbody>
+  </table>
+</main>
