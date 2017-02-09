@@ -1,22 +1,24 @@
 
-{{#each pages}}
-    <section class="Page">
-      <table>
-          <tbody>
-            {{#each rows}}
-                <tr>
-                    {{#each columns}}
-                        <td>
-                            {{#if this.empty}}
-                                EMPTY
-                            {{else}}
-                                {{> aidItem item=this }}
-                            {{/if}}
-                        </td>
-                    {{/each}}
-                </tr>
-            {{/each}}
-          </tbody>
-      </table>
-    </section>
-{{/each}}
+<section class="Preview">
+    {{#each pages}}
+        <section class="Page">
+          <table>
+              <tbody>
+                {{#each rows}}
+                    <tr>
+                        {{#each columns}}
+                            <td>
+                                {{#if this.empty}}
+
+                                {{else}}
+                                    {{> aidItem item=this }}
+                                {{/if}}
+                            </td>
+                        {{/each}}
+                    </tr>
+                {{/each}}
+              </tbody>
+          </table>
+        </section>
+    {{/each}}
+</section>

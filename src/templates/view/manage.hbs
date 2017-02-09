@@ -1,2 +1,27 @@
 
-MANAGE VIEW
+<section class="Manage">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Measurements</th>
+                    <th>Material</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                    <tr class="item-row" data-id="{{_id}}">
+                        <td class="id">{{id}}</td>
+                        <td class="measurements">{{measurements}}</td>
+                        <td class="material">{{material}}</td>
+                        <td class="image"><img src="{{imageData}}" /></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <aside class="item-editor-container"></aside>
+</section>

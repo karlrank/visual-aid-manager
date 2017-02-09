@@ -17,12 +17,22 @@ export default class BaseView extends EventEmitter {
         delete this.el;
     }
 
-    _bindEvent (event, selector, callback) {
+    _bindEvent (eventName, selector, callback) {
         var listener = {
-            event: event,
+            event: eventName,
             f: function (event) {
                 if (event.target.matches(selector)) {
+                    event.sTarget = event.target;
                     callback(event);
+                } else {
+                    let element = event.target.parentElement;
+                    while (element && element !== this.el) {
+                        if (element.matches(selector)) {
+                            event.sTarget = element;
+                            callback(event);
+                        }
+                        element = element.parentElement;
+                    }
                 }
             }
         };

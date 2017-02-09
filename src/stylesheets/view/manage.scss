@@ -1,0 +1,45 @@
+
+body > main > div.container > section.Manage {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    > div.table-container {
+        overflow: auto;
+        flex: 1 0 auto;
+        padding-right: 1.5rem;
+        background-color: white;
+
+        > table {
+            width: 100%;
+            border-collapse: collapse;
+
+            > thead {
+                > tr > th {
+                    text-align: initial;
+                }
+            }
+
+            > tbody {
+                > tr {
+                    &:hover {
+                        background-color: lightgray;
+                        cursor: pointer;
+                    }
+
+                    > td {
+                        &.image {
+                            > img {
+                                height: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    > aside {
+
+    }
+}

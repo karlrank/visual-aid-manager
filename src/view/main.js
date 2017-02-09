@@ -35,7 +35,12 @@ export default class MainView extends BaseView {
         this._renderHeader(name);
         let view = this._views.find(v => v.name === name);
         view.render();
-        this._main.innerHTML = view.el.outerHTML;
+
+        // Empty element
+        while(this._main.firstChild) {
+            this._main.removeChild(this._main.firstChild);
+        }
+        this._main.appendChild(view.el);
     }
 
     _renderHeader (selectedViewName) {

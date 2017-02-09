@@ -2,10 +2,13 @@
 'use strict';
 
 import _ from 'lodash';
+import EventEmitter from 'events';
 
-export default class VisualAidModel {
+export default class VisualAidModel extends EventEmitter {
     constructor () {
+        super();
         this._items = _.range(3 * 3 * 3 + 2).map(i => ({
+            _id: i,
             id: `1234:${i}`,
             measurements: '64x64x3',
             material: '1.4401 + 1D',
@@ -13,8 +16,19 @@ export default class VisualAidModel {
         }));
     }
 
+    getItem (id) {
+        id = parseInt(id);
+        return this._items.find(item => item._id === id);
+    }
+
+    updateItem (item) {
+        let modelItem = this._items.find(i => i._id === item._id);
+        _.assign(modelItem, item);
+        this.emit('item-updated', modelItem);
+    }
+
     getItems () {
-        return this._items;
+        return _.sortBy(this._items, 'id');
     }
 
     getItemsAsPages () {
@@ -22,7 +36,7 @@ export default class VisualAidModel {
             page = pages.pages[0],
             row = page.rows[0];
 
-        this._items.forEach(item => {
+        this.getItems().forEach(item => {
             if (page.rows.length >= 3 && row.columns.length >= 3) {
                 page = {rows: [{columns: []}]};
                 row = page.rows[0];
@@ -37,19 +51,13 @@ export default class VisualAidModel {
             row.columns.push(item);
         });
 
-        console.log(row.columns.length, page.rows.length);
-
         _.times(3 - row.columns.length, i => {
-            console.log(`none`);
             row.columns.push({empty: true});
         });
 
         _.times(3 - page.rows.length, i => {
-            console.log(`none 2`);
             page.rows.push({columns: [{empty: true}, {empty: true}, {empty: true}]});
         });
-
-        console.log(`PAGES`, pages);
 
         return pages;
     }

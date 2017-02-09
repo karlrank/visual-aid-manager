@@ -1,0 +1,26 @@
+
+@media print {
+    html {
+        overflow: auto;
+    }
+
+    body > header {
+        display: none;
+    }
+
+    body > main {
+        flex: 1 0 auto;
+        padding: 0;
+        height: 100%;
+
+        > div.container > section.Preview {
+            overflow: initial !important;
+        }
+    }
+}
+
+body > main > div.container > section.Preview {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
