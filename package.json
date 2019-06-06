@@ -31,10 +31,10 @@
   "dependencies": {
     "electron-chromedriver": "4.0.0-beta.1",
     "electron-log": "^2.2.17",
+    "extend": "^3.0.2",
     "fs-jetpack": "^2.2.0",
     "handlebars": "^4.0.12",
-    "lodash": "4.17.11",
-    "node.extend": "2.0.2"
+    "lodash": "4.17.11"
   },
   "devDependencies": {
     "chai": "^4.2.0",
